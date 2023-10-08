@@ -14,24 +14,25 @@ import java.util.Map;
 @WebServlet("/albums/*")
 @MultipartConfig
 public class AlbumServlet extends HttpServlet {
-    private static int id = 1;
+    private static long id = 10;
     private int getCount=0;
     private  int postCount=0;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String artist = request.getParameter("artist");
-        String title = request.getParameter("title");
-        String year = request.getParameter("year");
 
-        Part imagePart = request.getPart("image");
-        Map<String, String[]> parameterMap = request.getParameterMap();
+
+        String artist = request.getParameter("artist");
+
+
+
+
         // Process the file upload if needed
-        System.out.println(++postCount);
+        id++;
         ResponseData responseData = new ResponseData();
         responseData.setId(String.valueOf(id));
-        responseData.setImageSize(imagePart.getSize()+""); // Simulated file size
-        id++;
+        responseData.setImageSize("3475"); // Simulated file size
+
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
@@ -47,8 +48,7 @@ public class AlbumServlet extends HttpServlet {
         }
 
         albumID = albumID.substring(1); // Remove the leading slash
-        ++getCount;
-        System.out.println("Get:"+getCount);
+
         try {
             int id = Integer.parseInt(albumID);
             if (id < 1) {
