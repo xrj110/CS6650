@@ -74,10 +74,12 @@ public class Client1 {
         writer.println();
         writer.println("--" + boundary + "--");
         writer.close();
-
+        long s=System.currentTimeMillis();
         if (connection.getResponseCode()>400&&connection.getResponseCode()<600){
             throw new IOException();
         }
+        //long e=System.currentTimeMillis()-s;
+        //System.out.println("post:"+e);
 
         // response
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -101,10 +103,12 @@ public class Client1 {
         URL url = new URL(path+"/"+id);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-
+       // long s=System.currentTimeMillis();
         if (connection.getResponseCode()>400&&connection.getResponseCode()<600){
             throw new IOException();
         }
+        //long e=System.currentTimeMillis()-s;
+       // System.out.println("get:"+e);
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String line;
         StringBuilder response = new StringBuilder();
