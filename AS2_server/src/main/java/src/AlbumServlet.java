@@ -59,21 +59,21 @@ public class AlbumServlet extends HttpServlet {
                     updateStatement.executeUpdate();
                     System.out.println("A new row has been inserted with ID: " + primaryKey);
                     OutputStream out = null;
-                    try  {
-                        InputStream fileContent = imagePart.getInputStream();
-                        out = new FileOutputStream(new File(path+fileName));
+                    // try  {
+                    //     InputStream fileContent = imagePart.getInputStream();
+                    //     out = new FileOutputStream(new File(path+fileName));
 
-                        int read;
-                        final byte[] bytes = new byte[1024];
-                        while ((read = fileContent.read(bytes)) != -1) {
-                            out.write(bytes, 0, read);
-                        }
-                        fileContent.close();
+                    //     int read;
+                    //     final byte[] bytes = new byte[1024];
+                    //     while ((read = fileContent.read(bytes)) != -1) {
+                    //         out.write(bytes, 0, read);
+                    //     }
+                    //     fileContent.close();
 
 
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
+                    // } catch (IOException e) {
+                    //     System.out.println(e);
+                    // }
                 }
             } else {
                 System.out.println("Insertion failed.");
